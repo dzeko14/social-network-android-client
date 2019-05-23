@@ -3,7 +3,7 @@ package com.github.dzeko14.socialnetworkapp.storage.implementation
 import android.content.SharedPreferences
 import com.github.dzeko14.socialnetworkapp.model.Token
 import com.github.dzeko14.socialnetworkapp.storage.TokenStorage
-import com.github.dzeko14.socialnetworkapp.token.NoTokenException
+import com.github.dzeko14.socialnetworkapp.exception.NoTokenException
 
 private const val TOKEN_KEY = "token_key"
 
