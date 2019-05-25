@@ -4,10 +4,13 @@ import android.content.SharedPreferences
 import com.github.dzeko14.socialnetworkapp.model.Token
 import com.github.dzeko14.socialnetworkapp.storage.TokenStorage
 import com.github.dzeko14.socialnetworkapp.exception.NoTokenException
+import javax.inject.Inject
+import javax.inject.Singleton
 
 private const val TOKEN_KEY = "token_key"
 
-class TokenStorageImpl(
+@Singleton
+class TokenStorageImpl @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) : TokenStorage {
     override fun saveToken(token: Token) {
@@ -17,7 +20,7 @@ class TokenStorageImpl(
         }
     }
 
-    override fun getToken(token: Token): Token {
+    override fun getToken(): Token {
         val tokenStr = sharedPreferences.getString(TOKEN_KEY, "")!!
         if (tokenStr.isEmpty()) throw NoTokenException()
 

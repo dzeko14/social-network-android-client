@@ -1,19 +1,24 @@
 package com.github.dzeko14.socialnetworkapp.view.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.github.dzeko14.socialnetworkapp.R
+import com.github.dzeko14.socialnetworkapp.application.App
 import com.github.dzeko14.socialnetworkapp.viewmodel.SplashScreenViewModel
 import com.github.dzeko14.socialnetworkapp.viewmodel.factory.SplashScreenViewModelFactory
 import javax.inject.Inject
 
 class SplashScreenActivity : AppCompatActivity() {
-    //TODO: Inject
-    @Inject lateinit var viewModelFactory: SplashScreenViewModelFactory
+    @Inject
+    lateinit var viewModelFactory: SplashScreenViewModelFactory
 
     private lateinit var viewModel: SplashScreenViewModel
+
+    init {
+        App.appComponent.provideSplashScreenActivity(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
