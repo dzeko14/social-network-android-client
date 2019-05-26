@@ -27,6 +27,7 @@ class SplashScreenActivity : AppCompatActivity() {
             .get(SplashScreenViewModel::class.java)
         viewModel.liveData.observe(this, Observer {
             it.execute(this@SplashScreenActivity)
+            finish()
         })
     }
 

@@ -21,5 +21,5 @@ interface UserService {
     fun deleteUser(@Body tokenRequest: TokenRequest<User>): Call<Unit>
 
     @POST("/users/login")
-    fun loginUser(@Body userLogin: UserLogin): Call<Token>
+    fun loginUser(@Body user: User): Call<Token>
 }

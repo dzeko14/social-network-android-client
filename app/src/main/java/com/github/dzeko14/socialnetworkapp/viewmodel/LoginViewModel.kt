@@ -1,50 +1,56 @@
 package com.github.dzeko14.socialnetworkapp.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import android.util.Patterns
+import com.github.dzeko14.socialnetworkapp.exception.LoginException
+import com.github.dzeko14.socialnetworkapp.interactor.LoginUserInteractor
+import com.github.dzeko14.socialnetworkapp.model.User
+import com.github.dzeko14.socialnetworkapp.route.ActivityRoute
+import com.github.dzeko14.socialnetworkapp.route.MainActivityRoute
+import com.github.dzeko14.socialnetworkapp.viewmodel.abstracts.CoroutineViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
-class LoginViewModel() : ViewModel() {
+class LoginViewModel(
+    private val loginUserInteractor: LoginUserInteractor
+) : CoroutineViewModel() {
 
-//    private val _loginForm = MutableLiveData<LoginFormState>()
-//    val loginFormState: LiveData<LoginFormState> = _loginForm
-//
-//    private val _loginResult = MutableLiveData<LoginResult>()
-//    val loginResult: LiveData<LoginResult> = _loginResult
-//
-//    fun login(username: String, password: String) {
-//        // can be launched in a separate asynchronous job
-//
-////        if (result is Result.Success) {
-////            _loginResult.value = LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
-////        } else {
-////            _loginResult.value = LoginResult(error = R.string.login_failed)
-////        }
-//    }
-//
-//    fun loginDataChanged(username: String, password: String) {
-//        if (!isUserNameValid(username)) {
-//           // _loginForm.value = LoginFormState(usernameError = R.string.invalid_username)
-//        } else if (!isPasswordValid(password)) {
-//           // _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
-//        } else {
-//            _loginForm.value = LoginFormState(isDataValid = true)
-//        }
-//    }
-//
-//    // A placeholder username validation check
-//    private fun isUserNameValid(username: String): Boolean {
-//        return if (username.contains('@')) {
-//            Patterns.EMAIL_ADDRESS.matcher(username).matches()
-//        } else {
-//            username.isNotBlank()
-//        }
-//    }
-//
-//    // A placeholder password validation check
-//    private fun isPasswordValid(password: String): Boolean {
-//        return password.length > 5
-//    }
+
+    val login:  MutableLiveData<String> =  MutableLiveData()
+    val password:  MutableLiveData<String> =  MutableLiveData()
+
+    val route: MutableLiveData<ActivityRoute> = MutableLiveData()
+
+    val state: MutableLiveData<State> = MutableLiveData()
+
+    init {
+        state.value = State.IDLE
+    }
+
+    fun login() {
+        val lLogin = login.value ?: return
+        val lPassword = login.value ?: return
+
+        state.value = State.LOGIN_IN_PROCESS
+        viewModelScope.launch {
+            try {
+                withContext(Dispatchers.IO) {
+                    loginUserInteractor.login(User(
+                        login = lLogin,
+                        password = lPassword))
+                }
+                route.value = MainActivityRoute()
+                state.value = State.IDLE
+            } catch (e: LoginException) {
+                state.value = State.FAILED
+            }
+        }
+    }
+
+    enum class State {
+        IDLE,
+        LOGIN_IN_PROCESS,
+        FAILED
+    }
 }
