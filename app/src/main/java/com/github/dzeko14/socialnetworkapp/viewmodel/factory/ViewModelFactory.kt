@@ -7,6 +7,7 @@ import com.github.dzeko14.socialnetworkapp.interactor.LoginUserInteractor
 import com.github.dzeko14.socialnetworkapp.interactor.RegisterUserInteractor
 import com.github.dzeko14.socialnetworkapp.storage.TokenStorage
 import com.github.dzeko14.socialnetworkapp.viewmodel.LoginViewModel
+import com.github.dzeko14.socialnetworkapp.viewmodel.MainViewModel
 import com.github.dzeko14.socialnetworkapp.viewmodel.RegisterViewModel
 import com.github.dzeko14.socialnetworkapp.viewmodel.SplashScreenViewModel
 import javax.inject.Inject
@@ -34,6 +35,9 @@ class ViewModelFactory @Inject constructor(
 
             (modelClass.isAssignableFrom(RegisterViewModel::class.java))
             -> RegisterViewModel(registerUserInteractor) as T
+
+            (modelClass.isAssignableFrom(MainViewModel::class.java))
+            -> MainViewModel() as T
 
             else -> throw IllegalArgumentException("Unknown ViewModel class")
         }
