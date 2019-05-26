@@ -1,7 +1,8 @@
 package com.github.dzeko14.socialnetworkapp.route
 
+import android.app.Activity
 import android.content.Context
 
 interface ActivityRoute {
-    fun execute(activityContext: Context)
+    fun execute(activity: Activity)
 }

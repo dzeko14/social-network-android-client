@@ -6,6 +6,7 @@ import com.github.dzeko14.socialnetworkapp.interactor.LoginUserInteractor
 import com.github.dzeko14.socialnetworkapp.model.User
 import com.github.dzeko14.socialnetworkapp.route.ActivityRoute
 import com.github.dzeko14.socialnetworkapp.route.MainActivityRoute
+import com.github.dzeko14.socialnetworkapp.route.RegisterActivityRoute
 import com.github.dzeko14.socialnetworkapp.viewmodel.abstracts.CoroutineViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,7 +16,6 @@ import kotlinx.coroutines.withContext
 class LoginViewModel(
     private val loginUserInteractor: LoginUserInteractor
 ) : CoroutineViewModel() {
-
 
     val login:  MutableLiveData<String> =  MutableLiveData()
     val password:  MutableLiveData<String> =  MutableLiveData()
@@ -46,6 +46,10 @@ class LoginViewModel(
                 state.value = State.FAILED
             }
         }
+    }
+
+    fun register(){
+        route.value = RegisterActivityRoute()
     }
 
     enum class State {

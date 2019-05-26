@@ -4,19 +4,19 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.github.dzeko14.socialnetworkapp.R
 import com.github.dzeko14.socialnetworkapp.application.App
 import com.github.dzeko14.socialnetworkapp.databinding.ActivityLoginBinding
 import com.github.dzeko14.socialnetworkapp.viewmodel.LoginViewModel
-import com.github.dzeko14.socialnetworkapp.viewmodel.factory.LoginViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var viewModelFactory: LoginViewModelFactory
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var loginViewModel: LoginViewModel
 
@@ -50,7 +50,6 @@ class LoginActivity : AppCompatActivity() {
 
         loginViewModel.route.observe(this, Observer {
             it?.execute(this)
-            finish()
         })
     }
 

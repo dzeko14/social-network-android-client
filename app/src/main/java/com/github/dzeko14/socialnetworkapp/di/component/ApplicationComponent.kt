@@ -6,6 +6,7 @@ import com.github.dzeko14.socialnetworkapp.di.model.SharedPreferencesModule
 import com.github.dzeko14.socialnetworkapp.di.model.TokenStorageModule
 import com.github.dzeko14.socialnetworkapp.di.model.ViewModelFactoryModule
 import com.github.dzeko14.socialnetworkapp.view.activity.LoginActivity
+import com.github.dzeko14.socialnetworkapp.view.activity.RegisterActivity
 import com.github.dzeko14.socialnetworkapp.view.activity.SplashScreenActivity
 import dagger.BindsInstance
 import dagger.Component
@@ -23,6 +24,7 @@ import javax.inject.Singleton
 interface ApplicationComponent {
     fun provideSplashScreenActivity(activity: SplashScreenActivity)
     fun provideLoginActivity(activity: LoginActivity)
+    fun provideRegisterActivity(activity: RegisterActivity)
 
     @Component.Builder
     interface Builder {
