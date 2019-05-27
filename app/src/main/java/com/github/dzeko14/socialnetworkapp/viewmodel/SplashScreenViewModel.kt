@@ -23,7 +23,7 @@ class SplashScreenViewModel(
         viewModelScope.launch {
             delay(1000)
             try {
-                tokenStorage.getToken()
+                //tokenStorage.getToken()
                 liveData.value = MainActivityRoute()
             } catch (e: NoTokenException) {
                 liveData.value = LoginActivityRoute()

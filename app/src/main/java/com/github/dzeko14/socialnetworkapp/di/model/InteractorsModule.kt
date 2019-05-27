@@ -1,5 +1,6 @@
 package com.github.dzeko14.socialnetworkapp.di.model
 
+import com.github.dzeko14.socialnetworkapp.interactor.GetFriendsListInteractor
 import com.github.dzeko14.socialnetworkapp.interactor.LoginUserInteractor
 import com.github.dzeko14.socialnetworkapp.interactor.RegisterUserInteractor
 import com.github.dzeko14.socialnetworkapp.interactor.implementation.MockUserInteractors
@@ -15,6 +16,11 @@ class InteractorsModule {
 
     @Provides
     fun providesRegisterUserInteractor(mockUserInteractors: MockUserInteractors): RegisterUserInteractor {
+        return mockUserInteractors
+    }
+
+    @Provides
+    fun providesGetFriendsListInteractor(mockUserInteractors: MockUserInteractors): GetFriendsListInteractor {
         return mockUserInteractors
     }
 }

@@ -3,13 +3,11 @@ package com.github.dzeko14.socialnetworkapp.viewmodel.factory
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.github.dzeko14.socialnetworkapp.api.UserService
+import com.github.dzeko14.socialnetworkapp.interactor.GetFriendsListInteractor
 import com.github.dzeko14.socialnetworkapp.interactor.LoginUserInteractor
 import com.github.dzeko14.socialnetworkapp.interactor.RegisterUserInteractor
 import com.github.dzeko14.socialnetworkapp.storage.TokenStorage
-import com.github.dzeko14.socialnetworkapp.viewmodel.LoginViewModel
-import com.github.dzeko14.socialnetworkapp.viewmodel.MainViewModel
-import com.github.dzeko14.socialnetworkapp.viewmodel.RegisterViewModel
-import com.github.dzeko14.socialnetworkapp.viewmodel.SplashScreenViewModel
+import com.github.dzeko14.socialnetworkapp.viewmodel.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -21,7 +19,8 @@ import javax.inject.Singleton
 class ViewModelFactory @Inject constructor(
     private val loginUserInteractor: LoginUserInteractor,
     private val tokenStorage: TokenStorage,
-    private val registerUserInteractor: RegisterUserInteractor
+    private val registerUserInteractor: RegisterUserInteractor,
+    private val getFriendsListInteractor: GetFriendsListInteractor
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
@@ -38,6 +37,9 @@ class ViewModelFactory @Inject constructor(
 
             (modelClass.isAssignableFrom(MainViewModel::class.java))
             -> MainViewModel() as T
+
+            (modelClass.isAssignableFrom(FriendListViewModel::class.java))
+            -> FriendListViewModel(getFriendsListInteractor) as T
 
             else -> throw IllegalArgumentException("Unknown ViewModel class")
         }
