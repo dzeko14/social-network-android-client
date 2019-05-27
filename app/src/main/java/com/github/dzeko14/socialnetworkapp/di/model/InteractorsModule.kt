@@ -4,6 +4,7 @@ import com.github.dzeko14.socialnetworkapp.interactor.*
 import com.github.dzeko14.socialnetworkapp.interactor.implementation.MockPostInteractors
 import com.github.dzeko14.socialnetworkapp.interactor.implementation.MockUserInteractors
 import com.github.dzeko14.socialnetworkapp.model.Post
+import com.github.dzeko14.socialnetworkapp.model.User
 import dagger.Module
 import dagger.Provides
 
@@ -32,5 +33,15 @@ class InteractorsModule {
     @Provides
     fun providesGetFriendsPostListInteractor(mockPostInteractors: MockPostInteractors): GetFriendsPostListInteractor {
         return mockPostInteractors
+    }
+
+    @Provides
+    fun providesGetUserByIdInteractor(mockUserInteractors: MockUserInteractors): GetByIdInteractor<User, Long> {
+        return mockUserInteractors
+    }
+
+    @Provides
+    fun providesGetCurrentUserInfoInteractor(mockUserInteractors: MockUserInteractors): GetCurrentUserInfoInteractor {
+        return mockUserInteractors
     }
 }

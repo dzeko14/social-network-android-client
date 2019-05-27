@@ -11,6 +11,9 @@ import androidx.lifecycle.ViewModelProviders
 
 import com.github.dzeko14.socialnetworkapp.R
 import com.github.dzeko14.socialnetworkapp.application.App
+import com.github.dzeko14.socialnetworkapp.model.User
+import com.github.dzeko14.socialnetworkapp.route.UserDetailActivityRoute
+import com.github.dzeko14.socialnetworkapp.view.activity.UserDetailActivity
 import com.github.dzeko14.socialnetworkapp.view.adapter.FriendsListRecyclerViewAdapter
 import com.github.dzeko14.socialnetworkapp.view.fragment.abstracts.AbstractListFragment
 import com.github.dzeko14.socialnetworkapp.viewmodel.FriendListViewModel
@@ -23,10 +26,17 @@ class FriendsListFragment : AbstractListFragment() {
 
     private lateinit var viewModel: FriendListViewModel
 
-    override val rvAdapter: FriendsListRecyclerViewAdapter = FriendsListRecyclerViewAdapter()
+    override val rvAdapter: FriendsListRecyclerViewAdapter = FriendsListRecyclerViewAdapter(::selectUserCallback)
 
     init {
         App.appComponent.provideFriendListFragment(this)
+    }
+
+    private fun selectUserCallback(user: User) {
+        activity?.let { activity ->
+            UserDetailActivityRoute(user.id).execute(activity)
+        }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -5,10 +5,7 @@ import com.github.dzeko14.socialnetworkapp.di.model.InteractorsModule
 import com.github.dzeko14.socialnetworkapp.di.model.SharedPreferencesModule
 import com.github.dzeko14.socialnetworkapp.di.model.TokenStorageModule
 import com.github.dzeko14.socialnetworkapp.di.model.ViewModelFactoryModule
-import com.github.dzeko14.socialnetworkapp.view.activity.LoginActivity
-import com.github.dzeko14.socialnetworkapp.view.activity.MainActivity
-import com.github.dzeko14.socialnetworkapp.view.activity.RegisterActivity
-import com.github.dzeko14.socialnetworkapp.view.activity.SplashScreenActivity
+import com.github.dzeko14.socialnetworkapp.view.activity.*
 import com.github.dzeko14.socialnetworkapp.view.fragment.FriendsListFragment
 import com.github.dzeko14.socialnetworkapp.view.fragment.FriendsPostListFragment
 import com.github.dzeko14.socialnetworkapp.view.fragment.PostListFragment
@@ -33,6 +30,7 @@ interface ApplicationComponent {
     fun provideFriendListFragment(friendsListFragment: FriendsListFragment)
     fun providePostListFragment(postListFragment: PostListFragment)
     fun provideFriendsPostListFragment(friendsPostListFragment: FriendsPostListFragment)
+    fun provideUserDetailActivity(userDetailActivity: UserDetailActivity)
 
     @Component.Builder
     interface Builder {

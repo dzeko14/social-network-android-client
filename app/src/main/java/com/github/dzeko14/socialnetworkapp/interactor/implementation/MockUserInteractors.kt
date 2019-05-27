@@ -2,9 +2,7 @@ package com.github.dzeko14.socialnetworkapp.interactor.implementation
 
 import android.util.Log
 import com.github.dzeko14.socialnetworkapp.exception.LoginException
-import com.github.dzeko14.socialnetworkapp.interactor.GetFriendsListInteractor
-import com.github.dzeko14.socialnetworkapp.interactor.LoginUserInteractor
-import com.github.dzeko14.socialnetworkapp.interactor.RegisterUserInteractor
+import com.github.dzeko14.socialnetworkapp.interactor.*
 import com.github.dzeko14.socialnetworkapp.model.Token
 import com.github.dzeko14.socialnetworkapp.model.User
 import javax.inject.Inject
@@ -15,7 +13,17 @@ private const val MOCK_USER_LOG="Mock_User_Log"
 @Singleton
 class MockUserInteractors @Inject constructor(
 
-) : LoginUserInteractor, RegisterUserInteractor, GetFriendsListInteractor {
+) : LoginUserInteractor, RegisterUserInteractor, GetFriendsListInteractor,
+GetByIdInteractor<User, Long>, GetCurrentUserInfoInteractor {
+
+    override fun getById(id: Long): User {
+        return User(3, "guest", "", "rgr@w.com", "guest")
+    }
+
+    override fun getCurrentUser(): User {
+        return User(1, "root", "", "rgr@w.com", "root")
+    }
+
     override fun login(user: User) {
         if (user.login == "root" && user.password == "root")  {
             return

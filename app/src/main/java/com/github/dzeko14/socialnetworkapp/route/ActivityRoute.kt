@@ -1,8 +1,8 @@
 package com.github.dzeko14.socialnetworkapp.route
 
-import android.app.Activity
-import android.content.Context
+import androidx.fragment.app.FragmentActivity
+
 
 interface ActivityRoute {
-    fun execute(activity: Activity)
+    fun execute(activity: FragmentActivity)
 }
