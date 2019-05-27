@@ -10,6 +10,8 @@ import com.github.dzeko14.socialnetworkapp.view.activity.MainActivity
 import com.github.dzeko14.socialnetworkapp.view.activity.RegisterActivity
 import com.github.dzeko14.socialnetworkapp.view.activity.SplashScreenActivity
 import com.github.dzeko14.socialnetworkapp.view.fragment.FriendsListFragment
+import com.github.dzeko14.socialnetworkapp.view.fragment.FriendsPostListFragment
+import com.github.dzeko14.socialnetworkapp.view.fragment.PostListFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -29,6 +31,8 @@ interface ApplicationComponent {
     fun provideRegisterActivity(activity: RegisterActivity)
     fun provideMainActivity(mainActivity: MainActivity)
     fun provideFriendListFragment(friendsListFragment: FriendsListFragment)
+    fun providePostListFragment(postListFragment: PostListFragment)
+    fun provideFriendsPostListFragment(friendsPostListFragment: FriendsPostListFragment)
 
     @Component.Builder
     interface Builder {

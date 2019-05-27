@@ -1,4 +1,4 @@
-package com.github.dzeko14.socialnetworkapp.view.fragment
+package com.github.dzeko14.socialnetworkapp.view.fragment.abstracts
 
 import android.os.Bundle
 import android.view.View

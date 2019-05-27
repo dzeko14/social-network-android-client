@@ -2,21 +2,41 @@ package com.github.dzeko14.socialnetworkapp.view.fragment
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 
-import com.github.dzeko14.socialnetworkapp.R
+import com.github.dzeko14.socialnetworkapp.application.App
+import com.github.dzeko14.socialnetworkapp.view.fragment.abstracts.AbstractPostListFragment
+import com.github.dzeko14.socialnetworkapp.viewmodel.FriendsPostListViewModel
+import javax.inject.Inject
 
-class FriendsPostListFragment : Fragment() {
+class FriendsPostListFragment : AbstractPostListFragment() {
+    @Inject
+    lateinit var vewModelFactory: ViewModelProvider.Factory
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_friends_post_list, container, false)
+    private lateinit var viewModel: FriendsPostListViewModel
+
+    init {
+        App.appComponent.provideFriendsPostListFragment(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = ViewModelProviders.of(this, vewModelFactory)
+            .get(FriendsPostListViewModel::class.java)
+
+        viewModel.posts.observe(this, Observer {
+            it?.let { posts ->
+                rvAdapter.posts = posts
+            }
+        })
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.getFriendsPosts()
     }
 
     companion object {

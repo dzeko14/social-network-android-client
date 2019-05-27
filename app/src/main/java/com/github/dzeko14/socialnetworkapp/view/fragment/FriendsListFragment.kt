@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.github.dzeko14.socialnetworkapp.R
 import com.github.dzeko14.socialnetworkapp.application.App
 import com.github.dzeko14.socialnetworkapp.view.adapter.FriendsListRecyclerViewAdapter
+import com.github.dzeko14.socialnetworkapp.view.fragment.abstracts.AbstractListFragment
 import com.github.dzeko14.socialnetworkapp.viewmodel.FriendListViewModel
 import javax.inject.Inject
 
