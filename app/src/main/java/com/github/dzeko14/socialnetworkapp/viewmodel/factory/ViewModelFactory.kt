@@ -24,7 +24,8 @@ class ViewModelFactory @Inject constructor(
     private val getPostListInteractor: GetListInteractor<Post>,
     private val getFriendsPostListInteractor: GetFriendsPostListInteractor,
     private val getUserByIdInteractor: GetByIdInteractor<User, Long>,
-    private val getCurrentUserInfoInteractor: GetCurrentUserInfoInteractor
+    private val getCurrentUserInfoInteractor: GetCurrentUserInfoInteractor,
+    private val getPostByIdInteractor: GetByIdInteractor<Post, Long>
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
@@ -53,6 +54,9 @@ class ViewModelFactory @Inject constructor(
 
             (modelClass.isAssignableFrom(UserDetailViewModel::class.java))
             -> UserDetailViewModel(getUserByIdInteractor, getCurrentUserInfoInteractor) as T
+
+            (modelClass.isAssignableFrom(PostDetailViewModel::class.java))
+            -> PostDetailViewModel(getPostByIdInteractor) as T
 
             else -> throw IllegalArgumentException("Unknown ViewModel class")
         }

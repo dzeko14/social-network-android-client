@@ -44,4 +44,9 @@ class InteractorsModule {
     fun providesGetCurrentUserInfoInteractor(mockUserInteractors: MockUserInteractors): GetCurrentUserInfoInteractor {
         return mockUserInteractors
     }
+
+    @Provides
+    fun providesGetPostByIdInteractor(mockPostInteractors: MockPostInteractors): GetByIdInteractor<Post, Long> {
+        return mockPostInteractors
+    }
 }

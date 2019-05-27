@@ -1,5 +1,6 @@
 package com.github.dzeko14.socialnetworkapp.interactor.implementation
 
+import com.github.dzeko14.socialnetworkapp.interactor.GetByIdInteractor
 import com.github.dzeko14.socialnetworkapp.interactor.GetFriendsPostListInteractor
 import com.github.dzeko14.socialnetworkapp.interactor.GetListInteractor
 import com.github.dzeko14.socialnetworkapp.model.Post
@@ -11,7 +12,8 @@ import javax.inject.Singleton
 @Singleton
 class MockPostInteractors @Inject constructor(
 
-) : GetFriendsPostListInteractor, GetListInteractor<Post> {
+) : GetFriendsPostListInteractor, GetListInteractor<Post>,
+GetByIdInteractor<Post, Long> {
 
     private val posts: List<Post> = listOf(
         Post(1,
@@ -32,5 +34,9 @@ class MockPostInteractors @Inject constructor(
 
     override fun getList(): List<Post> {
         return posts
+    }
+
+    override fun getById(id: Long): Post {
+        return posts[0]
     }
 }
