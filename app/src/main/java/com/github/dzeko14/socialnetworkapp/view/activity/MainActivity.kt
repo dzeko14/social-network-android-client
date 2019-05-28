@@ -2,6 +2,10 @@ package com.github.dzeko14.socialnetworkapp.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -20,6 +24,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: MainViewModel
+
+    private lateinit var drawerLayout: DrawerLayout
 
     init {
         App.appComponent.provideMainActivity(this)
@@ -52,5 +58,24 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.fragment_container, fragment)
                 .commit()
         })
+
+        setSupportActionBar(findViewById(R.id.tool_bar))
+        supportActionBar.apply {
+            this?.let {
+                setDisplayHomeAsUpEnabled(true)
+                setHomeAsUpIndicator(R.drawable.ic_reorder)
+            }
+        }
+
+        drawerLayout = findViewById(R.id.drawer_layout)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item == null) return super.onOptionsItemSelected(item)
+
+        when(item.itemId) {
+            android.R.id.home -> drawerLayout.openDrawer(GravityCompat.START)
+        }
+        return true
     }
 }
