@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.github.dzeko14.socialnetworkapp.R
 import com.github.dzeko14.socialnetworkapp.application.App
+import com.github.dzeko14.socialnetworkapp.route.AllUsersActivityRoute
 import com.github.dzeko14.socialnetworkapp.view.fragment.FriendsListFragment
 import com.github.dzeko14.socialnetworkapp.view.fragment.FriendsPostListFragment
 import com.github.dzeko14.socialnetworkapp.view.fragment.PostListFragment
@@ -68,6 +69,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         drawerLayout = findViewById(R.id.drawer_layout)
+        initNavigationView()
+    }
+
+    private fun initNavigationView() {
+        navigation_view.apply {
+            setNavigationItemSelectedListener {
+                when(it.itemId) {
+
+                    R.id.all_users -> AllUsersActivityRoute().execute(this@MainActivity)
+                }
+
+                true
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -75,6 +90,7 @@ class MainActivity : AppCompatActivity() {
 
         when(item.itemId) {
             android.R.id.home -> drawerLayout.openDrawer(GravityCompat.START)
+
         }
         return true
     }

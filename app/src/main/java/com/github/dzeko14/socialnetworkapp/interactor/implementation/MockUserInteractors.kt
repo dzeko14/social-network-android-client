@@ -14,7 +14,14 @@ private const val MOCK_USER_LOG="Mock_User_Log"
 class MockUserInteractors @Inject constructor(
 
 ) : LoginUserInteractor, RegisterUserInteractor, GetFriendsListInteractor,
-GetByIdInteractor<User, Long>, GetCurrentUserInfoInteractor {
+GetByIdInteractor<User, Long>, GetCurrentUserInfoInteractor, GetListInteractor<User> {
+
+    override fun getList(): List<User> {
+        return listOf(
+            User(1, "esgsgr", "", "gergrg@gseg.c", "rsgsrgsgr"),
+            User(2, "trtr", "", "wwwww@gseg.c", "aaaaa")
+        )
+    }
 
     override fun getById(id: Long): User {
         return User(3, "guest", "", "rgr@w.com", "guest")

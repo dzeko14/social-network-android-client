@@ -60,4 +60,9 @@ class InteractorsModule {
     fun providesGetCommentsByPostInteractor(mockCommentInteractor: MockCommentInteractor): GetCommentsByPostInteractor {
         return mockCommentInteractor
     }
+
+    @Provides
+    fun providesGetUsersInteractor(interactor: MockUserInteractors): GetListInteractor<User> {
+        return interactor
+    }
 }

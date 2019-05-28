@@ -10,6 +10,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".view.activity.AllUsersActivity">
+        </activity>
         <activity android:name=".view.activity.CommentsActivity">
         </activity>
         <activity android:name=".view.activity.PostDetailActivity">
@@ -29,7 +31,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity.MainActivity" android:theme="@style/AppTheme.NoActionBar">
+        <activity
+                android:name=".view.activity.MainActivity"
+                android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

@@ -33,6 +33,7 @@ interface ApplicationComponent {
     fun provideUserDetailActivity(userDetailActivity: UserDetailActivity)
     fun providePostDetailActivity(postDetailActivity: PostDetailActivity)
     fun provideCommentsActivity(commentsActivity: CommentsActivity)
+    fun provideAllUsersActivity(allUsersActivity: AllUsersActivity)
 
     @Component.Builder
     interface Builder {
