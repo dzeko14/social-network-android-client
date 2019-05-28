@@ -32,6 +32,7 @@ interface ApplicationComponent {
     fun provideFriendsPostListFragment(friendsPostListFragment: FriendsPostListFragment)
     fun provideUserDetailActivity(userDetailActivity: UserDetailActivity)
     fun providePostDetailActivity(postDetailActivity: PostDetailActivity)
+    fun provideCommentsActivity(commentsActivity: CommentsActivity)
 
     @Component.Builder
     interface Builder {

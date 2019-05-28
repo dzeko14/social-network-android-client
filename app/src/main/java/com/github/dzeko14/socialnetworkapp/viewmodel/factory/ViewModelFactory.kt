@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.github.dzeko14.socialnetworkapp.api.UserService
 import com.github.dzeko14.socialnetworkapp.interactor.*
+import com.github.dzeko14.socialnetworkapp.model.Comment
 import com.github.dzeko14.socialnetworkapp.model.Post
 import com.github.dzeko14.socialnetworkapp.model.User
 import com.github.dzeko14.socialnetworkapp.storage.TokenStorage
@@ -25,7 +26,9 @@ class ViewModelFactory @Inject constructor(
     private val getFriendsPostListInteractor: GetFriendsPostListInteractor,
     private val getUserByIdInteractor: GetByIdInteractor<User, Long>,
     private val getCurrentUserInfoInteractor: GetCurrentUserInfoInteractor,
-    private val getPostByIdInteractor: GetByIdInteractor<Post, Long>
+    private val getPostByIdInteractor: GetByIdInteractor<Post, Long>,
+    private val createCommentInteractor: CreateCommentInteractor,
+    private val getCommentsByPostInteractor: GetCommentsByPostInteractor
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
@@ -57,6 +60,9 @@ class ViewModelFactory @Inject constructor(
 
             (modelClass.isAssignableFrom(PostDetailViewModel::class.java))
             -> PostDetailViewModel(getPostByIdInteractor) as T
+
+            (modelClass.isAssignableFrom(CommentViewModel::class.java))
+            -> CommentViewModel(getCommentsByPostInteractor, createCommentInteractor) as T
 
             else -> throw IllegalArgumentException("Unknown ViewModel class")
         }

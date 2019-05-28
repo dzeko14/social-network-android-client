@@ -38,6 +38,10 @@ class PostDetailActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.executePendingBindings()
 
+        viewModel.route.observe(this, Observer {
+            it?.execute(this)
+        })
+
         viewModel.post.observe(this, Observer {
             it?.let {post ->
                 binding.post = post

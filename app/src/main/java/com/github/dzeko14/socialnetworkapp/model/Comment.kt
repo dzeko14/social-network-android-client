@@ -6,5 +6,6 @@ class Comment(
     val id: Long,
     val content: String,
     val post: Post,
-    val date: Long
+    val date: Long,
+    val author: User
 )
